@@ -26,4 +26,4 @@ Contains general restaurant information.
 
 - Manage menus (Create, View, Update, Delete)
 - Manager user info
-- Log in to save informations and manage them later
+- Log in to save information and manage them later
