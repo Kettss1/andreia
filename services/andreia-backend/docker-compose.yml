@@ -1,0 +1,20 @@
+services:
+  ##############################
+  # PostgreSQL Instance
+  ##############################
+  postgres:
+    image: postgres:14
+    volumes:
+      - postgres_db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: andreia
+      POSTGRES_PORT: 5432
+    logging:
+      options:
+        max-size: "10m"
+volumes:
+  postgres_db_data:
