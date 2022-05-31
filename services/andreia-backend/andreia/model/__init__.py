@@ -1,12 +1,7 @@
-from decimal import Decimal
-
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, ForeignKey, Numeric
 from sqlalchemy.orm import relationship
 
-from andreia.model.base import PrimaryKeyMixin, SlugMixin
-
-Base = declarative_base()
+from andreia.model.base import PrimaryKeyMixin, SlugMixin, Base
 
 
 class User(Base, PrimaryKeyMixin):
@@ -33,7 +28,7 @@ class Restaurant(Base, PrimaryKeyMixin, SlugMixin):
     user_id = Column(PrimaryKeyMixin.id.type, ForeignKey('user.id'), nullable=False)
     name = Column(String, nullable=False)
     description = Column(String)
-    delivery_charge = Column(Decimal)
+    delivery_charge = Column(Numeric)
     menus = relationship('Menu')
 
 
@@ -56,6 +51,6 @@ class MenuSection(Base, PrimaryKeyMixin, SlugMixin):
 class MenuItem(Base, PrimaryKeyMixin, SlugMixin):
     section = relationship('MenuSection')
     name = Column(String, nullable=False, unique=True)
-    price = Column(Decimal, nullable=False)
+    price = Column(Numeric, nullable=False)
     section_id = Column(PrimaryKeyMixin.id.type, ForeignKey("menusection.id"))
     index = Column(Integer, nullable=False)
