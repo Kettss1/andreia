@@ -2,26 +2,34 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Numeric
 from sqlalchemy.orm import relationship
 
 from andreia.model.base import PrimaryKeyMixin, SlugMixin, Base
+from andreia.utils.safety import generate_salt, generate_password, generate_random_token
 
 
 class User(Base, PrimaryKeyMixin):
     name = Column(String, nullable=False, unique=True)
     # Login with email, so, e-mail must be unique
     email = Column(String, nullable=False, unique=True)
-
-    # TODO: Estudar porque https://stackoverflow.com/a/9595108
-    #  exemplo implementacao em scratch.py
-    #  testar esse fluxo de
-    #  - desenvolver pequenas POCs em SCRATCH_XX.PY
-    #  - brincar com o python live no botao Python Console (ao lado de TOD0)
     password = Column(String, nullable=False)
     password_salt = Column(String, nullable=False)
     restaurants = relationship('Restaurant')
 
-    # TODO: Implementar funcoes:
-    #  - Setpassword
-    #  - Checkpassword
-    #  Ambas recebem uma string e settam os campos adequados, OU comparam (fazem o calculo reverso)
+    def set_password(self, password):
+        self.password_salt = generate_salt()
+        self.password = generate_password(password, self.password_salt)
+
+    def check_password(self, password):
+        return generate_password(password, self.password_salt) == self.password
+
+
+class AuthToken(Base, PrimaryKeyMixin):
+    token = Column(String, nullable=False, unique=True)
+    user_id = Column(PrimaryKeyMixin.id.type, ForeignKey('user.id'), nullable=False)
+    user = relationship('User')
+    user: User
+
+    def generate_token(self):
+        self.token = generate_random_token()
+        return self
 
 
 class Restaurant(Base, PrimaryKeyMixin, SlugMixin):
