@@ -20,10 +20,12 @@ Contains general restaurant information.
 
 - Restaurant is an entity of [User]
 - User can register several Restaurants
-- User can set a Restaurant to a Menu (so that the front page aforementioned can render information from it)
+- User can set a Menu to a Restaurant (so that the front page aforementioned can render information from it)
+- User can set Items and Item Categories and later associate items to them
 
 ## Main Features
 
 - Manage menus (Create, View, Update, Delete)
 - Manager user info
 - Log in to save information and manage them later
+- See the Menu preview before generating the PDF
