@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declared_attr, declarative_base
 
@@ -12,7 +12,7 @@ class PrimaryKeyMixin:
     def __tablename__(cls) -> str:
         return cls.__name__.lower()
 
-    id: uuid.UUID = Column('id', UUID, primary_key=True)
+    id = Column('id', Integer, primary_key=True, )
 
 
 class SlugMixin:

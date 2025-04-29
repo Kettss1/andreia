@@ -9,6 +9,8 @@ uvicorn = {extras = ["standard"], version = "*"}
 sqlalchemy = "*"
 psycopg2-binary = "*"
 click = "*"
+starlette = "*"
+python-multipart = "*"
 
 [dev-packages]
 
