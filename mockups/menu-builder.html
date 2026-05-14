@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar cardápio — Andreia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">Andreia</div>
+      <div class="biz-switcher">
+        <span>Doces da Andreia</span>
+        <span class="chevron">▾</span>
+      </div>
+      <nav>
+        <a href="dashboard.html">Início</a>
+        <a href="catalog.html">Catálogo</a>
+        <a href="menus.html" class="active">Cardápios</a>
+        <a href="quotes-list.html">Orçamentos</a>
+        <div class="section-label">Negócio</div>
+        <a href="identity.html">Identidade visual</a>
+        <a href="#">Configurações</a>
+      </nav>
+      <div class="user-footer">
+        <div class="user-avatar">A</div>
+        <div>Andreia</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <a href="menus.html" class="quote-back">← Voltar para cardápios</a>
+
+      <div class="quote-header">
+        <div>
+          <div class="quote-title">Editar cardápio</div>
+          <div class="quote-id">Cardápio de festas · atualizado há 2 dias</div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Informações</h3>
+        <div class="field">
+          <label>Nome do cardápio</label>
+          <input type="text" value="Cardápio de festas">
+        </div>
+        <div class="field">
+          <label>Descrição <span style="color: var(--text-subtle); font-weight: 400;">(opcional)</span></label>
+          <textarea placeholder="Texto que aparece no topo do PDF do cardápio">Confeitaria artesanal para o seu evento. Bolos, salgados e doces feitos com carinho. Encomende com antecedência mínima de 7 dias.</textarea>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <button class="menu-section-title-edit">Bolos</button>
+          <button class="section-remove">remover seção</button>
+        </div>
+
+        <div class="menu-product">
+          <span class="menu-product-name">Bolo recheado de chocolate</span>
+          <span class="menu-product-price">R$ 80,00 / kg</span>
+          <button class="line-remove">×</button>
+        </div>
+        <div class="menu-product">
+          <span class="menu-product-name">Bolo de aniversário decorado</span>
+          <span class="menu-product-price">R$ 120,00 / kg</span>
+          <button class="line-remove">×</button>
+        </div>
+
+        <button class="add-line" style="margin-top: 10px;">+ Adicionar produto do catálogo</button>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <button class="menu-section-title-edit">Salgados</button>
+          <button class="section-remove">remover seção</button>
+        </div>
+
+        <div class="menu-product">
+          <span class="menu-product-name">Coxinha de frango</span>
+          <span class="menu-product-price">R$ 60,00 / cento</span>
+          <button class="line-remove">×</button>
+        </div>
+        <div class="menu-product">
+          <span class="menu-product-name">Empada de frango</span>
+          <span class="menu-product-price">R$ 70,00 / cento</span>
+          <button class="line-remove">×</button>
+        </div>
+        <div class="menu-product">
+          <span class="menu-product-name">Mini quiche de queijo</span>
+          <span class="menu-product-price">R$ 80,00 / cento</span>
+          <button class="line-remove">×</button>
+        </div>
+
+        <button class="add-line" style="margin-top: 10px;">+ Adicionar produto do catálogo</button>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <button class="menu-section-title-edit">Doces</button>
+          <button class="section-remove">remover seção</button>
+        </div>
+
+        <div class="menu-product">
+          <span class="menu-product-name">Brigadeiro gourmet</span>
+          <span class="menu-product-price">R$ 90,00 / cento</span>
+          <button class="line-remove">×</button>
+        </div>
+        <div class="menu-product">
+          <span class="menu-product-name">Beijinho</span>
+          <span class="menu-product-price">R$ 80,00 / cento</span>
+          <button class="line-remove">×</button>
+        </div>
+        <div class="menu-product">
+          <span class="menu-product-name">Bicho de pé</span>
+          <span class="menu-product-price">R$ 100,00 / cento</span>
+          <button class="line-remove">×</button>
+        </div>
+
+        <button class="add-line" style="margin-top: 10px;">+ Adicionar produto do catálogo</button>
+      </div>
+
+      <button class="add-line" style="margin-bottom: 24px;">+ Adicionar nova seção</button>
+
+      <div class="actions-split">
+        <button class="btn btn-danger">Excluir cardápio</button>
+        <div class="actions-right">
+          <a href="menus.html" class="btn">Cancelar</a>
+          <button class="btn">Salvar</button>
+          <button class="btn btn-primary">Pré-visualizar PDF</button>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+</body>
+</html>

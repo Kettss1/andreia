@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápios — Andreia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">Andreia</div>
+      <div class="biz-switcher">
+        <span>Doces da Andreia</span>
+        <span class="chevron">▾</span>
+      </div>
+      <nav>
+        <a href="dashboard.html">Início</a>
+        <a href="catalog.html">Catálogo</a>
+        <a href="menus.html" class="active">Cardápios</a>
+        <a href="quotes-list.html">Orçamentos</a>
+        <div class="section-label">Negócio</div>
+        <a href="identity.html">Identidade visual</a>
+        <a href="#">Configurações</a>
+      </nav>
+      <div class="user-footer">
+        <div class="user-avatar">A</div>
+        <div>Andreia</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-header-row">
+        <div>
+          <h1 class="page-title">Cardápios</h1>
+          <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">PDFs prontos para mandar pra clientes em potencial</p>
+        </div>
+        <a href="menu-builder.html" class="btn btn-primary">+ Novo cardápio</a>
+      </div>
+
+      <div class="list-table">
+        <div class="list-row head row-menus">
+          <span>Nome</span>
+          <span>Itens</span>
+          <span>Atualizado</span>
+          <span style="text-align: right;">Ações</span>
+        </div>
+
+        <a href="menu-builder.html" class="list-row row-menus">
+          <span>
+            <div style="font-weight: 500;">Cardápio de festas</div>
+            <div class="row-cell-sub">Bolos, salgados, doces e kits</div>
+          </span>
+          <span style="color: var(--text-muted);">24 produtos</span>
+          <span style="color: var(--text-muted);">há 2 dias</span>
+          <span class="list-actions">
+            <button class="icon-btn" title="Pré-visualizar PDF">PDF</button>
+            <button class="icon-btn" title="Editar">editar</button>
+          </span>
+        </a>
+
+        <a href="menu-builder.html" class="list-row row-menus">
+          <span>
+            <div style="font-weight: 500;">Cardápio de almoço</div>
+            <div class="row-cell-sub">Marmitas e quentinhas</div>
+          </span>
+          <span style="color: var(--text-muted);">15 produtos</span>
+          <span style="color: var(--text-muted);">há 1 semana</span>
+          <span class="list-actions">
+            <button class="icon-btn" title="Pré-visualizar PDF">PDF</button>
+            <button class="icon-btn" title="Editar">editar</button>
+          </span>
+        </a>
+
+        <a href="menu-builder.html" class="list-row row-menus">
+          <span>
+            <div style="font-weight: 500;">Cardápio promocional Páscoa</div>
+            <div class="row-cell-sub">Doces e bolos especiais</div>
+          </span>
+          <span style="color: var(--text-muted);">8 produtos</span>
+          <span style="color: var(--text-muted);">há 1 mês</span>
+          <span class="list-actions">
+            <button class="icon-btn" title="Pré-visualizar PDF">PDF</button>
+            <button class="icon-btn" title="Editar">editar</button>
+          </span>
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+</body>
+</html>

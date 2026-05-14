@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar produto — Andreia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">Andreia</div>
+      <div class="biz-switcher">
+        <span>Doces da Andreia</span>
+        <span class="chevron">▾</span>
+      </div>
+      <nav>
+        <a href="dashboard.html">Início</a>
+        <a href="catalog.html" class="active">Catálogo</a>
+        <a href="menus.html">Cardápios</a>
+        <a href="quotes-list.html">Orçamentos</a>
+        <div class="section-label">Negócio</div>
+        <a href="identity.html">Identidade visual</a>
+        <a href="#">Configurações</a>
+      </nav>
+      <div class="user-footer">
+        <div class="user-avatar">A</div>
+        <div>Andreia</div>
+      </div>
+    </aside>
+
+    <main class="main" style="max-width: 720px;">
+      <a href="catalog.html" class="quote-back">← Voltar para catálogo</a>
+
+      <div class="quote-header">
+        <div>
+          <div class="quote-title">Editar produto</div>
+          <div class="quote-id">Brigadeiro gourmet</div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Informações</h3>
+        <div class="field">
+          <label>Nome do produto</label>
+          <input type="text" value="Brigadeiro gourmet">
+        </div>
+        <div class="field">
+          <label>Descrição <span style="color: var(--text-subtle); font-weight: 400;">(opcional)</span></label>
+          <textarea placeholder="Descrição que aparece no menu/orçamento">Brigadeiro tradicional de chocolate, cobertura granulada premium.</textarea>
+        </div>
+        <div class="field">
+          <label>Categoria</label>
+          <select>
+            <option>Bolos</option>
+            <option>Salgados</option>
+            <option selected>Doces</option>
+            <option>Kits</option>
+            <option>+ Nova categoria...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Preço</h3>
+        <div class="field-row">
+          <div class="field">
+            <label>Unidade de venda</label>
+            <select>
+              <option>Unidade (un)</option>
+              <option>Quilo (kg)</option>
+              <option selected>Cento (100un)</option>
+              <option>Dúzia (12un)</option>
+              <option>Kit (preço fixo)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Preço por cento</label>
+            <input type="text" value="R$ 90,00">
+          </div>
+        </div>
+        <div class="field-help">A unidade aparecerá no menu e nos itens do orçamento (ex.: "R$ 90,00 / cento")</div>
+      </div>
+
+      <div class="form-section">
+        <h3>Foto <span style="color: var(--text-subtle); font-weight: 400; text-transform: none; letter-spacing: 0;">(opcional)</span></h3>
+        <div class="upload-zone">
+          Clique para enviar uma foto, ou arraste aqui
+          <div style="margin-top: 6px; font-size: 12px; color: var(--text-subtle);">JPG, PNG · até 5MB</div>
+        </div>
+      </div>
+
+      <div class="actions-split">
+        <button class="btn btn-danger">Excluir produto</button>
+        <div class="actions-right">
+          <a href="catalog.html" class="btn">Cancelar</a>
+          <button class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+</body>
+</html>

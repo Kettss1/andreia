@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo orçamento — Andreia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">Andreia</div>
+
+      <div class="biz-switcher">
+        <span>Doces da Andreia</span>
+        <span class="chevron">▾</span>
+      </div>
+
+      <nav>
+        <a href="dashboard.html">Início</a>
+        <a href="catalog.html">Catálogo</a>
+        <a href="menus.html">Cardápios</a>
+        <a href="quotes-list.html" class="active">Orçamentos</a>
+
+        <div class="section-label">Negócio</div>
+        <a href="identity.html">Identidade visual</a>
+        <a href="#">Configurações</a>
+      </nav>
+
+      <div class="user-footer">
+        <div class="user-avatar">A</div>
+        <div>Andreia</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <a href="quotes-list.html" class="quote-back">← Voltar para orçamentos</a>
+
+      <div class="quote-header">
+        <div>
+          <div class="quote-title">Novo orçamento</div>
+          <div class="quote-id">#0027 · criado hoje</div>
+        </div>
+        <div class="status-pill">
+          <span class="status-dot draft"></span>
+          Rascunho
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Cliente</h3>
+        <div class="field">
+          <label>Nome</label>
+          <input type="text" value="Maria Silva" placeholder="Nome do cliente">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Telefone</label>
+            <input type="text" value="(51) 99999-1234" placeholder="(00) 00000-0000">
+          </div>
+          <div class="field">
+            <label>Email <span style="color: var(--text-subtle); font-weight: 400;">(opcional)</span></label>
+            <input type="email" placeholder="email@exemplo.com">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Evento</h3>
+        <div class="field-row field-row-3">
+          <div class="field">
+            <label>Tipo</label>
+            <select>
+              <option>Aniversário</option>
+              <option>Casamento</option>
+              <option>Chá de bebê</option>
+              <option>Formatura</option>
+              <option>Festa de empresa</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Data do evento</label>
+            <input type="date" value="2026-05-16">
+          </div>
+          <div class="field">
+            <label>Convidados</label>
+            <input type="number" value="50">
+          </div>
+        </div>
+        <div class="field">
+          <label>Local</label>
+          <input type="text" value="Rua das Flores, 123 — Porto Alegre" placeholder="Endereço do evento">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Itens</h3>
+
+        <div class="line-item">
+          <div>
+            <div class="line-item-name">Brigadeiro gourmet</div>
+            <div class="line-item-meta">R$ 90,00 / cento</div>
+          </div>
+          <div class="line-qty">
+            <input type="number" value="2"> cento(s)
+          </div>
+          <div class="line-total">R$ 180,00</div>
+          <button class="line-remove" title="Remover item">×</button>
+        </div>
+
+        <div class="line-item">
+          <div>
+            <div class="line-item-name">Bolo recheado de chocolate</div>
+            <div class="line-item-meta">R$ 80,00 / kg</div>
+          </div>
+          <div class="line-qty">
+            <input type="number" value="3"> kg
+          </div>
+          <div class="line-total">R$ 240,00</div>
+          <button class="line-remove" title="Remover item">×</button>
+        </div>
+
+        <button class="add-line">+ Adicionar item do catálogo</button>
+
+        <div class="subtotal">Subtotal <strong>R$ 420,00</strong></div>
+      </div>
+
+      <div class="form-section">
+        <h3>Taxas e descontos</h3>
+        <div class="adjustment-row">
+          <input type="text" value="Taxa de entrega" placeholder="Descrição">
+          <input type="number" value="50.00" step="0.01">
+          <button class="line-remove" title="Remover">×</button>
+        </div>
+        <button class="add-line" style="margin-top: 10px;">+ Adicionar taxa ou desconto</button>
+      </div>
+
+      <div class="form-section">
+        <h3>Observações</h3>
+        <div class="field">
+          <textarea placeholder="Instruções especiais, alergias, detalhes do evento...">Brigadeiros sem leite — cliente alérgica.
+Entrega na sexta-feira até as 18h.</textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Validade</h3>
+        <div class="field" style="max-width: 220px;">
+          <select>
+            <option>Válido por 7 dias</option>
+            <option>Válido por 14 dias</option>
+            <option>Válido por 30 dias</option>
+            <option>Sem validade</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="total-bar">
+        <span class="total-label">Total</span>
+        <div>
+          <span class="total-amount">R$ 470,00</span>
+          <button class="total-edit">editar manualmente</button>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        <button class="btn">Salvar rascunho</button>
+        <button class="btn btn-primary">Pré-visualizar PDF</button>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>

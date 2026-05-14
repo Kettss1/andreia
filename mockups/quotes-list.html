@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamentos — Andreia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">Andreia</div>
+      <div class="biz-switcher">
+        <span>Doces da Andreia</span>
+        <span class="chevron">▾</span>
+      </div>
+      <nav>
+        <a href="dashboard.html">Início</a>
+        <a href="catalog.html">Catálogo</a>
+        <a href="menus.html">Cardápios</a>
+        <a href="quotes-list.html" class="active">Orçamentos</a>
+        <div class="section-label">Negócio</div>
+        <a href="identity.html">Identidade visual</a>
+        <a href="#">Configurações</a>
+      </nav>
+      <div class="user-footer">
+        <div class="user-avatar">A</div>
+        <div>Andreia</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-header-row">
+        <h1 class="page-title">Orçamentos</h1>
+        <a href="quote-builder.html" class="btn btn-primary">+ Novo orçamento</a>
+      </div>
+
+      <div class="tabs">
+        <a href="#" class="tab active">Todos <span class="tab-count">24</span></a>
+        <a href="#" class="tab">Rascunho <span class="tab-count">3</span></a>
+        <a href="#" class="tab">Enviado <span class="tab-count">5</span></a>
+        <a href="#" class="tab">Aceito <span class="tab-count">12</span></a>
+        <a href="#" class="tab">Rejeitado <span class="tab-count">4</span></a>
+      </div>
+
+      <div class="search-box">
+        <input type="search" placeholder="Buscar por cliente, evento ou número...">
+      </div>
+
+      <div class="list-table">
+        <div class="list-row head row-quotes">
+          <span>Status</span>
+          <span>#</span>
+          <span>Cliente / evento</span>
+          <span>Data evento</span>
+          <span style="text-align: right;">Valor</span>
+        </div>
+
+        <a href="quote-builder.html" class="list-row row-quotes">
+          <span class="status-inline"><span class="status-dot sent"></span>Enviado</span>
+          <span style="color: var(--text-muted); font-variant-numeric: tabular-nums;">0027</span>
+          <span><div style="font-weight: 500;">Maria Silva</div><div class="row-cell-sub">Aniversário · 50 conv.</div></span>
+          <span style="color: var(--text-muted);">Sáb 16/05</span>
+          <span class="row-amount">R$ 1.200,00</span>
+        </a>
+
+        <a href="quote-builder.html" class="list-row row-quotes">
+          <span class="status-inline"><span class="status-dot accepted"></span>Aceito</span>
+          <span style="color: var(--text-muted); font-variant-numeric: tabular-nums;">0026</span>
+          <span><div style="font-weight: 500;">Lucia Costa</div><div class="row-cell-sub">Chá de bebê · 30 conv.</div></span>
+          <span style="color: var(--text-muted);">Sáb 23/05</span>
+          <span class="row-amount">R$ 800,00</span>
+        </a>
+
+        <a href="quote-builder.html" class="list-row row-quotes">
+          <span class="status-inline"><span class="status-dot accepted"></span>Aceito</span>
+          <span style="color: var(--text-muted); font-variant-numeric: tabular-nums;">0025</span>
+          <span><div style="font-weight: 500;">Joana Pereira</div><div class="row-cell-sub">Casamento · 120 conv.</div></span>
+          <span style="color: var(--text-muted);">Dom 17/05</span>
+          <span class="row-amount">R$ 3.500,00</span>
+        </a>
+
+        <a href="quote-builder.html" class="list-row row-quotes">
+          <span class="status-inline"><span class="status-dot sent"></span>Enviado <span class="warn-dot" title="Sem resposta há 5 dias" style="margin-left: 4px;"></span></span>
+          <span style="color: var(--text-muted); font-variant-numeric: tabular-nums;">0024</span>
+          <span><div style="font-weight: 500;">Ana Beatriz</div><div class="row-cell-sub">Aniversário 15 anos · 80 conv.</div></span>
+          <span style="color: var(--text-muted);">Sáb 30/05</span>
+          <span class="row-amount">R$ 2.100,00</span>
+        </a>
+
+        <a href="quote-builder.html" class="list-row row-quotes">
+          <span class="status-inline muted"><span class="status-dot draft"></span>Rascunho</span>
+          <span style="color: var(--text-muted); font-variant-numeric: tabular-nums;">0023</span>
+          <span><div style="font-weight: 500;">Pedro Souza</div><div class="row-cell-sub">Festa de empresa · 60 conv.</div></span>
+          <span style="color: var(--text-subtle);">—</span>
+          <span class="row-amount">R$ 1.800,00</span>
+        </a>
+
+        <a href="quote-builder.html" class="list-row row-quotes">
+          <span class="status-inline muted"><span class="status-dot rejected"></span>Rejeitado</span>
+          <span style="color: var(--text-muted); font-variant-numeric: tabular-nums;">0022</span>
+          <span><div style="font-weight: 500;">Carlos Mendes</div><div class="row-cell-sub">Casamento · 200 conv.</div></span>
+          <span style="color: var(--text-subtle);">—</span>
+          <span class="row-amount" style="color: var(--text-muted);">R$ 4.200,00</span>
+        </a>
+
+        <a href="quote-builder.html" class="list-row row-quotes">
+          <span class="status-inline"><span class="status-dot accepted"></span>Aceito</span>
+          <span style="color: var(--text-muted); font-variant-numeric: tabular-nums;">0021</span>
+          <span><div style="font-weight: 500;">Patricia Lima</div><div class="row-cell-sub">Aniversário · 40 conv.</div></span>
+          <span style="color: var(--text-muted);">Sáb 02/05</span>
+          <span class="row-amount">R$ 950,00</span>
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+</body>
+</html>
