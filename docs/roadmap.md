@@ -4,19 +4,19 @@ Where the work sits and the order to do it in. Read alongside `analysis.md` (pro
 
 ## Where we are
 
-- Empty repo: `docs/` + `mockups/` + `README.md`. The old `services/andreia-backend/` was deleted — Python learning, no salvageable code.
-- Stack chosen: **Next.js (App Router) + Neon + Drizzle + Better Auth (Google) + react-pdf + shadcn/ui + Tailwind**, deployed on **Vercel**.
+- Phase 0 nearly done: Next.js 16 + Tailwind v4 scaffolded, Drizzle + Neon wired, Better Auth (Google) working end-to-end. Remaining: shadcn/ui + the layout shell.
+- Stack: **Next.js (App Router) + Neon + Drizzle + Better Auth (Google) + react-pdf + shadcn/ui + Tailwind**. Self-hosted on the user's own server — deployment deferred, local-only for now.
 - v1 scope and UX direction are locked in `analysis.md` and the mockups.
 
 ## Approach
 
-Vertical slices. Each phase ships something the user can do end-to-end, even if narrow. Deploy continuously to Vercel previews from day one — production deploy happens at the end of Phase 4 (or whenever it feels good).
+Vertical slices. Each phase ships something the user can do end-to-end, even if narrow. Everything runs locally for now — deployment to the user's own server is deferred until the core phases are solid.
 
 ---
 
 ## Phase 0 — Foundation
 
-**Goal**: Sign in with Google, land on a protected layout that matches the mockup's sidebar shell. Nothing else works yet, but it's deployed.
+**Goal**: Sign in with Google, land on a protected layout that matches the mockup's sidebar shell. Nothing else works yet.
 
 **In scope**
 - `pnpm create next-app` at repo root, TypeScript strict, App Router
@@ -24,15 +24,14 @@ Vertical slices. Each phase ships something the user can do end-to-end, even if 
 - Drizzle + Neon connected (one dev DB to start)
 - Better Auth with Google provider, session in DB
 - Layout shell from mockups: sidebar (Início / Catálogo / Cardápios / Orçamentos / Identidade visual / Configurações), business-switcher placeholder, user footer
-- Sign-in page, sign-out, middleware that protects everything except `/login`
-- Vercel project + preview deployments per branch
+- Sign-in page, sign-out, `proxy.ts` that protects everything except `/login`
 
 **Not in scope**
 - Any product feature
 - Real business-switcher logic
 - Multi-tenancy enforcement
 
-**Acceptance**: visit prod URL → Google → signed in → sidebar layout with empty pages → sign out works.
+**Acceptance**: visit localhost → Google → signed in → sidebar layout with empty pages → sign out works.
 
 ---
 
@@ -73,7 +72,7 @@ Vertical slices. Each phase ships something the user can do end-to-end, even if 
 - `menu_section_product` — menuSectionId, productId, sortOrder
 
 **Features**
-- Identidade visual page: logo upload via Vercel Blob, single manual color picker, business info fields (name, phone, email, Instagram, city), pick template (one implemented: "Clean")
+- Identidade visual page: logo upload (storage backend TBD — see open decisions), single manual color picker, business info fields (name, phone, email, Instagram, city), pick template (one implemented: "Clean")
 - Menus list page
 - Menu builder: name, description, add/reorder sections, add products from catalog
 - react-pdf renderer for the Clean template, using business identity
@@ -145,7 +144,7 @@ Vertical slices. Each phase ships something the user can do end-to-end, even if 
 
 **Goal**: in her hands, used in real life.
 
-- Production deploy + custom domain (if you want one)
+- Deploy to the user's own server (deployment approach decided closer to this phase)
 - Sit with mom — sign her in, walk through Identidade visual, help her enter her real catalog
 - Watch her create a real cardápio + a real orçamento
 - Note every friction point (probably the catalog setup is the steepest cliff)
@@ -168,6 +167,8 @@ Vertical slices. Each phase ships something the user can do end-to-end, even if 
 ## Open decisions to make as we go
 
 - **Multi-tenancy enforcement.** Default: `db.scopedTo(businessId)` helper at the application layer. Revisit Postgres RLS via Neon before the product has multiple paying users.
+- **File storage for logos.** Was Vercel Blob, but the project is self-hosted now — revisit at Phase 2. Likely an S3-compatible store (Cloudflare R2, MinIO) or the server's filesystem.
 - **i18n library.** Defaulting to inline pt-BR strings — `next-intl` only if/when we expand languages.
 - **CI.** Probably skip for solo dev. GitHub Actions if you change your mind.
-- **Drizzle migration workflow.** Decide between `drizzle-kit push` (loose, fast) for solo dev vs. proper migrations from day one. I'd start loose and switch to migrations before going to prod.
+- **Drizzle migration workflow.** Currently using `drizzle-kit push` (loose, fast) for solo dev. Switch to proper generated migrations before the first real deploy.
+- **Deployment to own server.** Approach (Docker, bare Node, reverse proxy, etc.) decided closer to Phase 5. Next.js `output: "standalone"` will likely matter here.
