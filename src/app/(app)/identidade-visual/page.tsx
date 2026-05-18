@@ -9,7 +9,7 @@ export default async function IdentidadeVisualPage() {
       <p className="text-sm font-medium text-muted-foreground">
         Identidade visual
       </p>
-      <h1 className="mt-1 font-display text-4xl font-semibold tracking-tight text-foreground">
+      <h1 className="mt-1 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
         Identidade visual
       </h1>
       <p className="mt-2 max-w-xl text-base text-muted-foreground">

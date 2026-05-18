@@ -201,24 +201,24 @@ export function ProductForm({
         <p className="text-sm text-destructive">{serverError}</p>
       ) : null}
 
-      <div className="flex items-center justify-between gap-3 border-t border-border pt-6">
+      <div className="flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
         {isEdit ? (
           <button
             type="button"
             onClick={onDelete}
             disabled={isDeleting || isSubmitting}
-            className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-destructive transition-colors hover:bg-destructive hover:text-white disabled:opacity-60"
+            className="rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-destructive transition-colors hover:bg-destructive hover:text-white disabled:opacity-60"
           >
             {isDeleting ? "Excluindo..." : "Excluir produto"}
           </button>
         ) : (
-          <span />
+          <span className="hidden sm:block" />
         )}
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-2">
           <Link
             href="/catalogo"
-            className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+            className="flex-1 rounded-lg border border-border px-4 py-2.5 text-center text-sm font-medium text-foreground transition-colors hover:bg-secondary sm:flex-none"
           >
             Cancelar
           </Link>
@@ -226,7 +226,7 @@ export function ProductForm({
             type="submit"
             disabled={isSubmitting || isDeleting}
             onClick={() => router.prefetch("/catalogo")}
-            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
+            className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60 sm:flex-none"
           >
             {isSubmitting ? "Salvando..." : "Salvar"}
           </button>
@@ -356,7 +356,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
       <h2 className="text-xs font-semibold uppercase tracking-[0.07em] text-muted-foreground">
         {title}
       </h2>
@@ -395,7 +395,7 @@ function Field({
 }
 
 const inputClass =
-  "w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring";
+  "w-full rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring sm:py-2 sm:text-sm";
 
 const triggerClass =
-  "h-[38px] w-full rounded-lg border-input bg-background px-3 py-2 text-sm font-normal text-foreground";
+  "h-11 w-full rounded-lg border-input bg-background px-3 py-2 text-base font-normal text-foreground sm:h-[38px] sm:text-sm";

@@ -18,7 +18,7 @@ export default async function AppLayout({
   }
 
   return (
-    <div className="flex min-h-svh bg-background">
+    <div className="flex min-h-svh flex-col bg-background md:flex-row">
       <AppSidebar
         business={{ name: business.name }}
         user={{
@@ -28,7 +28,7 @@ export default async function AppLayout({
         }}
       />
       <main className="flex-1 overflow-x-hidden">
-        <div className="mx-auto w-full max-w-5xl px-8 py-10 lg:px-12 lg:py-14">
+        <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-14">
           {children}
         </div>
       </main>

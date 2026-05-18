@@ -85,7 +85,7 @@ export function IdentityForm({ defaults }: { defaults: IdentityDefaults }) {
   const displayedLogo = pendingPreview
     ? pendingPreview
     : !markRemoved && serverLogoPath
-      ? `/api/files/${serverLogoPath}`
+      ? serverLogoPath
       : null;
 
   function onPickFile(file: File | null) {
@@ -153,7 +153,7 @@ export function IdentityForm({ defaults }: { defaults: IdentityDefaults }) {
     >
       {/* Logo */}
       <Section title="Logo">
-        <div className="flex items-center gap-5">
+        <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
           <div
             className="flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border bg-secondary"
             style={
@@ -179,7 +179,7 @@ export function IdentityForm({ defaults }: { defaults: IdentityDefaults }) {
             )}
           </div>
 
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2">
             <p className="text-sm text-muted-foreground">
               PNG, JPG, WEBP ou SVG · até 5MB
             </p>
@@ -187,7 +187,7 @@ export function IdentityForm({ defaults }: { defaults: IdentityDefaults }) {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
               >
                 <Upload className="size-4" />
                 {displayedLogo ? "Trocar logo" : "Enviar logo"}
@@ -196,7 +196,7 @@ export function IdentityForm({ defaults }: { defaults: IdentityDefaults }) {
                 <button
                   type="button"
                   onClick={onRemoveLogo}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-destructive transition-colors hover:bg-destructive hover:text-white"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm font-medium text-destructive transition-colors hover:bg-destructive hover:text-white"
                 >
                   <X className="size-4" />
                   Remover
@@ -272,7 +272,7 @@ export function IdentityForm({ defaults }: { defaults: IdentityDefaults }) {
           <input
             {...register("primaryColor")}
             type="text"
-            className="ml-2 w-28 rounded-lg border border-input bg-background px-3 py-2 text-sm tabular-nums uppercase text-foreground outline-none transition-colors focus:border-ring"
+            className="w-28 rounded-lg border border-input bg-background px-3 py-2.5 text-base tabular-nums uppercase text-foreground outline-none transition-colors focus:border-ring sm:ml-2 sm:py-2 sm:text-sm"
           />
         </div>
         {errors.primaryColor ? (
@@ -378,7 +378,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
       <h2 className="text-xs font-semibold uppercase tracking-[0.07em] text-muted-foreground">
         {title}
       </h2>
@@ -417,4 +417,4 @@ function Field({
 }
 
 const inputClass =
-  "w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring";
+  "w-full rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring sm:py-2 sm:text-sm";

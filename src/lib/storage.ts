@@ -1,16 +1,8 @@
 import "server-only";
-import { randomUUID } from "node:crypto";
-import { mkdir, writeFile, unlink, readFile, stat } from "node:fs/promises";
-import path from "node:path";
+import { put, del } from "@vercel/blob";
 
-// Local-filesystem storage. Files live in ./uploads/ at the project root.
-// Each file is named <uuid>.<ext>. We never trust the original filename.
-//
-// To migrate to S3/R2/MinIO later, replace the body of these three
-// functions — the rest of the app only knows the returned filename and
-// fetches the file by URL through /api/files/<filename>.
-
-const UPLOADS_DIR = path.join(process.cwd(), "uploads");
+// Vercel Blob storage. Uploaded files become public, immutable URLs.
+// Callers store the returned URL on the model; deletes accept the same URL.
 
 const ALLOWED_MIME_TYPES = new Set([
   "image/png",
@@ -36,7 +28,7 @@ export type SaveImageInput = {
   size: number;
 };
 
-/** Saves an image to ./uploads/ and returns the stored filename. */
+/** Uploads an image and returns its public URL. */
 export async function saveImage({
   buffer,
   contentType,
@@ -51,63 +43,24 @@ export async function saveImage({
     throw new StorageError("Arquivo muito grande. O limite é 5MB.");
   }
 
-  await mkdir(UPLOADS_DIR, { recursive: true });
-
   const ext = EXT_BY_MIME[contentType];
-  const filename = `${randomUUID()}.${ext}`;
-  await writeFile(path.join(UPLOADS_DIR, filename), buffer);
+  // addRandomSuffix lets Blob append a unique key segment so we never
+  // collide; the "logos/" prefix keeps the store browsable per asset type.
+  const { url } = await put(`logos/logo.${ext}`, buffer, {
+    access: "public",
+    contentType,
+    addRandomSuffix: true,
+  });
 
-  return filename;
+  return url;
 }
 
-/** Removes a stored file. No-op if it doesn't exist. */
-export async function deleteImage(filename: string): Promise<void> {
-  if (!isSafeFilename(filename)) return;
+/** Removes an uploaded file. No-op if the URL is empty or already gone. */
+export async function deleteImage(url: string): Promise<void> {
+  if (!url) return;
   try {
-    await unlink(path.join(UPLOADS_DIR, filename));
+    await del(url);
   } catch {
     // Already gone or never existed — fine.
-  }
-}
-
-/** Reads a stored file as bytes + content type, for the serve route. */
-export async function readImage(
-  filename: string,
-): Promise<{ bytes: Buffer; contentType: string } | null> {
-  if (!isSafeFilename(filename)) return null;
-
-  const filepath = path.join(UPLOADS_DIR, filename);
-
-  try {
-    await stat(filepath);
-  } catch {
-    return null;
-  }
-
-  const bytes = await readFile(filepath);
-  const ext = path.extname(filename).slice(1).toLowerCase();
-  const contentType = mimeFromExt(ext);
-
-  return { bytes, contentType };
-}
-
-function isSafeFilename(name: string): boolean {
-  // Strictly <uuid>.<ext> — no traversal, no slashes, no nulls.
-  return /^[0-9a-f-]{36}\.(png|jpg|jpeg|webp|svg)$/i.test(name);
-}
-
-function mimeFromExt(ext: string): string {
-  switch (ext) {
-    case "png":
-      return "image/png";
-    case "jpg":
-    case "jpeg":
-      return "image/jpeg";
-    case "webp":
-      return "image/webp";
-    case "svg":
-      return "image/svg+xml";
-    default:
-      return "application/octet-stream";
   }
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -15,6 +15,12 @@ const fontDisplay = Fraunces({
 export const metadata: Metadata = {
   title: "Andreia",
   description: "Cardápios e orçamentos profissionais para o seu negócio.",
+};
+
+// Approximation of the ivory --background token in sRGB so mobile browser
+// chrome blends into the canvas instead of showing a default white bar.
+export const viewport: Viewport = {
+  themeColor: "#FBF6EC",
 };
 
 export default function RootLayout({

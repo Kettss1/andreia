@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -11,6 +12,8 @@ import {
   Settings,
   ChevronsUpDown,
   LogOut,
+  Menu,
+  X,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
@@ -33,13 +36,92 @@ const businessNav: NavItem[] = [
   { href: "/configuracoes", label: "Configurações", icon: Settings },
 ];
 
+type Business = { name: string };
+type User = { name: string; email: string; image: string | null };
+
 export function AppSidebar({
   business,
   user,
 }: {
-  business: { name: string };
-  user: { name: string; email: string; image: string | null };
+  business: Business;
+  user: User;
 }) {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  // Close the drawer whenever the route changes.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll while the mobile drawer is open.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  return (
+    <>
+      {/* Mobile top bar */}
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-3 border-b border-border bg-background/95 px-4 backdrop-blur md:hidden">
+        <span className="font-display text-xl font-semibold tracking-tight text-foreground">
+          Andreia
+        </span>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Abrir menu"
+          className="-mr-2 flex size-10 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-secondary"
+        >
+          <Menu className="size-5" />
+        </button>
+      </header>
+
+      {/* Mobile drawer */}
+      {open ? (
+        <>
+          <div
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
+          />
+          <div className="fixed inset-y-0 right-0 z-50 flex w-[min(88vw,320px)] flex-col bg-sidebar text-sidebar-foreground shadow-2xl md:hidden">
+            <div className="flex items-center justify-between px-5 pt-5 pb-4">
+              <span className="font-display text-xl font-semibold tracking-tight text-sidebar-foreground">
+                Andreia
+              </span>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Fechar menu"
+                className="-mr-2 flex size-9 items-center justify-center rounded-lg text-sidebar-foreground/70 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
+              >
+                <X className="size-5" />
+              </button>
+            </div>
+            <SidebarBody business={business} user={user} />
+          </div>
+        </>
+      ) : null}
+
+      {/* Desktop sidebar */}
+      <aside className="hidden w-[264px] shrink-0 flex-col bg-sidebar text-sidebar-foreground md:flex">
+        <div className="px-5 pt-6 pb-5">
+          <span className="font-display text-2xl font-semibold tracking-tight text-sidebar-foreground">
+            Andreia
+          </span>
+        </div>
+        <SidebarBody business={business} user={user} />
+      </aside>
+    </>
+  );
+}
+
+function SidebarBody({ business, user }: { business: Business; user: User }) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -51,13 +133,7 @@ export function AppSidebar({
   const userInitial = user.name?.trim().charAt(0).toUpperCase() || "?";
 
   return (
-    <aside className="flex w-[264px] shrink-0 flex-col bg-sidebar text-sidebar-foreground">
-      <div className="px-5 pt-6 pb-5">
-        <span className="font-display text-2xl font-semibold tracking-tight text-sidebar-foreground">
-          Andreia
-        </span>
-      </div>
-
+    <>
       <div className="px-3">
         <button
           type="button"
@@ -78,7 +154,7 @@ export function AppSidebar({
         </button>
       </div>
 
-      <nav className="mt-6 flex flex-1 flex-col gap-1 px-3">
+      <nav className="mt-6 flex flex-1 flex-col gap-1 overflow-y-auto px-3">
         {mainNav.map((item) => (
           <NavLink key={item.href} item={item} active={isActive(item.href)} />
         ))}
@@ -111,13 +187,13 @@ export function AppSidebar({
               router.push("/login");
             }}
             aria-label="Sair"
-            className="flex size-8 shrink-0 items-center justify-center rounded-md text-sidebar-foreground/55 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
+            className="flex size-10 shrink-0 items-center justify-center rounded-md text-sidebar-foreground/55 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
           >
             <LogOut className="size-4" />
           </button>
         </div>
       </div>
-    </aside>
+    </>
   );
 }
 
@@ -127,7 +203,7 @@ function NavLink({ item, active }: { item: NavItem; active: boolean }) {
     <Link
       href={item.href}
       className={cn(
-        "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+        "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
         active
           ? "bg-sidebar-accent text-sidebar-foreground"
           : "text-sidebar-foreground/65 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",

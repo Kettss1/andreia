@@ -22,7 +22,7 @@ export function OnboardingForm() {
           autoFocus
           autoComplete="off"
           placeholder="Ex.: Doces da Andreia"
-          className="mt-1.5 w-full rounded-lg border border-input bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring"
+          className="mt-1.5 w-full rounded-lg border border-input bg-card px-3 py-2.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring sm:py-2 sm:text-sm"
         />
         {state?.error ? (
           <p className="mt-1.5 text-sm text-destructive">{state.error}</p>

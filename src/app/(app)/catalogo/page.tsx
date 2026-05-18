@@ -43,10 +43,10 @@ export default async function CatalogoPage() {
 
   return (
     <div>
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-sm font-medium text-muted-foreground">Catálogo</p>
-          <h1 className="mt-1 font-display text-4xl font-semibold tracking-tight text-foreground">
+          <h1 className="mt-1 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Seu catálogo
           </h1>
           <p className="mt-2 max-w-xl text-base text-muted-foreground">
@@ -57,7 +57,7 @@ export default async function CatalogoPage() {
         </div>
         <Link
           href="/catalogo/novo"
-          className="flex shrink-0 items-center gap-1.5 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          className="inline-flex shrink-0 items-center justify-center gap-1.5 self-start rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <Plus className="size-4" />
           Novo produto
@@ -84,7 +84,7 @@ export default async function CatalogoPage() {
                     key={p.id}
                     href={`/catalogo/${p.id}`}
                     className={
-                      "flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-secondary/60" +
+                      "flex items-center gap-4 px-4 py-3.5 transition-colors hover:bg-secondary/60 sm:px-5" +
                       (i > 0 ? " border-t border-border" : "")
                     }
                   >
@@ -114,7 +114,7 @@ export default async function CatalogoPage() {
 
 function EmptyState() {
   return (
-    <div className="mt-10 flex flex-col items-center gap-4 rounded-2xl border border-dashed border-border bg-card/40 px-10 py-16 text-center">
+    <div className="mt-10 flex flex-col items-center gap-4 rounded-2xl border border-dashed border-border bg-card/40 px-6 py-12 text-center sm:px-10 sm:py-16">
       <span className="flex size-12 items-center justify-center rounded-xl bg-secondary text-muted-foreground">
         <BookOpen className="size-6" />
       </span>
